@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.example.mybatisdemo.Dao.PoweronApiInMapper" >
+  <resultMap id="BaseResultMap" type="com.example.mybatisdemo.domain.PoweronApiIn" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="key_value" property="keyValue" jdbcType="VARCHAR" />
+    <result column="class_attrib_id" property="classAttribId" jdbcType="VARCHAR" />
+    <result column="class_attrib_type" property="classAttribType" jdbcType="VARCHAR" />
+    <result column="value_text" property="valueText" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, key_value, class_attrib_id, class_attrib_type, value_text
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from poweron_api_in
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <select id="selectAllPoweron" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from poweron_api_in
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from poweron_api_in
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.example.mybatisdemo.domain.PoweronApiIn" >
+    insert into poweron_api_in (id, key_value, class_attrib_id, 
+      class_attrib_type, value_text)
+    values (#{id,jdbcType=BIGINT}, #{keyValue,jdbcType=VARCHAR}, #{classAttribId,jdbcType=VARCHAR}, 
+      #{classAttribType,jdbcType=VARCHAR}, #{valueText,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.example.mybatisdemo.domain.PoweronApiIn" >
+    insert into poweron_api_in
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="keyValue != null" >
+        key_value,
+      </if>
+      <if test="classAttribId != null" >
+        class_attrib_id,
+      </if>
+      <if test="classAttribType != null" >
+        class_attrib_type,
+      </if>
+      <if test="valueText != null" >
+        value_text,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="keyValue != null" >
+        #{keyValue,jdbcType=VARCHAR},
+      </if>
+      <if test="classAttribId != null" >
+        #{classAttribId,jdbcType=VARCHAR},
+      </if>
+      <if test="classAttribType != null" >
+        #{classAttribType,jdbcType=VARCHAR},
+      </if>
+      <if test="valueText != null" >
+        #{valueText,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.example.mybatisdemo.domain.PoweronApiIn" >
+    update poweron_api_in
+    <set >
+      <if test="keyValue != null" >
+        key_value = #{keyValue,jdbcType=VARCHAR},
+      </if>
+      <if test="classAttribId != null" >
+        class_attrib_id = #{classAttribId,jdbcType=VARCHAR},
+      </if>
+      <if test="classAttribType != null" >
+        class_attrib_type = #{classAttribType,jdbcType=VARCHAR},
+      </if>
+      <if test="valueText != null" >
+        value_text = #{valueText,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.example.mybatisdemo.domain.PoweronApiIn" >
+    update poweron_api_in
+    set key_value = #{keyValue,jdbcType=VARCHAR},
+      class_attrib_id = #{classAttribId,jdbcType=VARCHAR},
+      class_attrib_type = #{classAttribType,jdbcType=VARCHAR},
+      value_text = #{valueText,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>

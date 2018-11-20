@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.example.mybatisdemo.Dao.PoweronApiInEasyPoiMapper">
+    <insert id="insert" parameterType="com.example.mybatisdemo.domain.PoweronApiInEasyPoi" >
+    insert into poweron_api_in ( key_value, class_attrib_id,
+      class_attrib_type, value_text)
+    values ( #{keyValue,jdbcType=VARCHAR}, #{classAttribId,jdbcType=VARCHAR},
+      #{classAttribType,jdbcType=VARCHAR}, #{valueText,jdbcType=VARCHAR})
+  </insert>
+    <insert id="insertSelective"></insert>
+    <update id="updateByPrimaryKeySelective"></update>
+    <update id="updateByPrimaryKey"></update>
+    <select id="selectAllPoweron" resultType="com.example.mybatisdemo.domain.PoweronApiInEasyPoi"></select>
+</mapper>

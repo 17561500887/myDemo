@@ -1,0 +1,20 @@
+
+spring:
+  datasource:
+    url: jdbc:mysql://192.168.100.134:3306/cpecmst?useUnicode=true&characterEncoding=utf8&useSSL=false
+    username: root
+    password: 1qaz@WSX
+
+mybatis:
+  mapper-locations: classpath:mapper/*.xml
+  type-aliases-package: com.example.mybatisdemo.Dao
+
+  #pagehelper分页插件
+pagehelper:
+  helperDialect: mysql
+  reasonable: true
+  supportMethodsArguments: true
+  params: count=countSql
+
+
+

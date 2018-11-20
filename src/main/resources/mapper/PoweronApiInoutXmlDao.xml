@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.example.mybatisdemo.Dao.PoweronApiInoutXmlDao">
+    <resultMap id="BaseResultMap" type="com.example.mybatisdemo.domain.PoweronApiInout" >
+        <id column="key_value" property="key_value" jdbcType="VARCHAR" />
+        <result column="catalog_id" property="catalog_id" jdbcType="VARCHAR" />
+        <result column="component_type_id" property="component_type_id" jdbcType="VARCHAR" />
+        <result column="size_format_id" property="size_format_id" jdbcType="VARCHAR" />
+        <result column="part_no" property="part_no" jdbcType="INTEGER" />
+        <result column="part_id" property="part_id" jdbcType="VARCHAR" />
+        <result column="part_descr1" property="part_descr1" jdbcType="VARCHAR" />
+        <result column="size_descr1" property="size_descr1" jdbcType="VARCHAR" />
+        <result column="part_descr2" property="part_descr2" jdbcType="VARCHAR" />
+        <result column="size_descr2" property="size_descr2" jdbcType="VARCHAR" />
+        <result column="unit_id" property="unit_id" jdbcType="VARCHAR" />
+        <result column="stat" property="stat" jdbcType="VARCHAR" />
+        <result column="in_date" property="in_date" jdbcType="DATE" />
+        <result column="out_date" property="out_date" jdbcType="DATE" />
+        <result column="applicant" property="applicant" jdbcType="VARCHAR" />
+        <result column="apply_time" property="apply_time" jdbcType="VARCHAR" />
+        <result column="applicant_name" property="applicant_name" jdbcType="VARCHAR" />
+    </resultMap>
+    <resultMap id="ListResultMap" type="com.example.mybatisdemo.domain.PoweronApiInout" >
+        <id column="key_value" property="key_value" jdbcType="VARCHAR" />
+        <result column="catalog_id" property="catalog_id" jdbcType="VARCHAR" />
+        <result column="component_type_id" property="component_type_id" jdbcType="VARCHAR" />
+        <result column="size_format_id" property="size_format_id" jdbcType="VARCHAR" />
+        <result column="part_no" property="part_no" jdbcType="INTEGER" />
+        <result column="part_id" property="part_id" jdbcType="VARCHAR" />
+        <result column="part_descr1" property="part_descr1" jdbcType="VARCHAR" />
+        <result column="size_descr1" property="size_descr1" jdbcType="VARCHAR" />
+        <result column="part_descr2" property="part_descr2" jdbcType="VARCHAR" />
+        <result column="size_descr2" property="size_descr2" jdbcType="VARCHAR" />
+        <result column="unit_id" property="unit_id" jdbcType="VARCHAR" />
+        <result column="stat" property="stat" jdbcType="VARCHAR" />
+        <result column="in_date" property="in_date" jdbcType="DATE" />
+        <result column="out_date" property="out_date" jdbcType="DATE" />
+        <result column="applicant" property="applicant" jdbcType="VARCHAR" />
+        <result column="apply_time" property="apply_time" jdbcType="VARCHAR" />
+        <result column="applicant_name" property="applicant_name" jdbcType="VARCHAR" />
+        <collection property="poweronApiIns" javaType="java.util.List" ofType="com.example.mybatisdemo.domain.PoweronApiIn">
+            <id column="id" property="id" jdbcType="BIGINT" />
+            <result column="key_value" property="keyValue" jdbcType="VARCHAR" />
+            <result column="class_attrib_id" property="classAttribId" jdbcType="VARCHAR" />
+            <result column="class_attrib_type" property="classAttribType" jdbcType="VARCHAR" />
+            <result column="value_text" property="valueText" jdbcType="VARCHAR" />
+        </collection>
+    </resultMap>
+    <select id="selectAllXmlByKeyValue" parameterType="String" resultType="com.example.mybatisdemo.domain.PoweronApiInout">
+        select * from poweron_api_inout where key_value = #{keyValue}
+    </select>
+    <select id="selectList" resultMap="ListResultMap">
+        select
+        p.key_value,
+        p.catalog_id,
+        p.component_type_id,
+        p.stat,
+        p.applicant,
+        p.applicant_name,
+        a.id,
+        a.class_attrib_id,
+        a.class_attrib_type,
+        a.value_text
+        from poweron_api_inout p
+        left join  poweron_api_in a
+        on p.key_value=a.key_value
+    </select>
+</mapper>
